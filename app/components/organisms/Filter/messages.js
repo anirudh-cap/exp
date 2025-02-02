@@ -5,7 +5,7 @@ export const scope = 'loyaltyPlus.components.pages.NewBookRequest';
 export default defineMessages({
   headingText: {
     id: `${scope}.headingText`,
-    defaultMessage: 'All Expenses',
+    defaultMessage: 'Expense Home',
   },
   bookName: {
     id: `${scope}.bookName`,

@@ -1,18 +1,17 @@
+// ExpenseHome.js
+
 import React, { useEffect, useState } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import { CapRow } from '@capillarytech/cap-ui-library';
+import { CapRow, CapHeading } from '@capillarytech/cap-ui-library';
 import Filter from '../../organisms/Filter/Filter';
 import ExpenseList from '../../organisms/ExpenseList/ExpenseList';
 import injectSaga from '@capillarytech/cap-coupons/utils/injectSaga';
 import injectReducer from '@capillarytech/cap-coupons/utils/injectReducer';
-import { fetchExpenseRequest } from './actions';
 import saga from './saga';
 import reducer from './reducer';
 import NavBar from '../../organisms/NavBar/NavBar';
-import { useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import withStyles from '../../../utils/withStyles';
 import * as actions from './actions';
 import { expenseReducer } from './reducer';
 import {
@@ -21,89 +20,89 @@ import {
     makeLoadingSelector
 } from './selectors';
 
-const ExpenseHome = ({className, expenses, loading, error, actions}) => {
-    console.log('expenses from home', expenses);
+const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
     const [enteredFilterValue, setEnteredFilterValue] = useState('');
     const [filterBy, selectedFilterBy] = useState('BY_NAME');
-    //const state = useSelector(state => state);
-    //console.log('state', state);
     
     useEffect(() => {
-        console.log('inside useEffect');
-         actions.fetchExpenseRequest();
+        actions.fetchExpenseRequest();
     }, []);
+
+    // Calculate totals
+    const totalExpenses = expenses.reduce((sum, expense) => sum + expense.get('amount'), 0);
+    const balance = 100000 - totalExpenses;
+
     function getFilterKey() {
       switch (filterBy) {
-        case 'BY_ID':
-          return 'id';
-        case 'BY_NAME':
-          return 'name';
-        case 'BY_CATEGORY':
-          return 'category';
-        default:
-          return '';      
-        }
-    }
-    const filterKey = getFilterKey();
-
-    function setFilterBy(val) {
-      selectedFilterBy(val);
-    }
-
-    function onFilterValueChange(val) {
-      setEnteredFilterValue(val);
+        case 'BY_ID': return 'id';
+        case 'BY_NAME': return 'name';
+        case 'BY_CATEGORY': return 'category';
+        default: return '';      
+      }
     }
 
     return (
         <>
-        <CapRow>
             <NavBar />
-            <CapRow>
-                <Filter
-                  selectedFilterBy={filterBy}
-                  handleFilterByChange={setFilterBy}
-                  filterValue={enteredFilterValue}
-                  handleFilterValueChange={onFilterValueChange}
-                 />
-                <ExpenseList className={className}/>
-            </CapRow> 
-        </CapRow>
-       
+            {/* Main container now arranges its children in a column and centers them */}
+            <CapRow
+                style={{
+                    padding: '0 24px',
+                    marginTop: 16,
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                }}
+            >
+                {/* Filter Section */}
+                <CapRow style={{ width: '100%', marginBottom: 16 }}>
+                    <Filter
+                        selectedFilterBy={filterBy}
+                        handleFilterByChange={selectedFilterBy}
+                        filterValue={enteredFilterValue}
+                        handleFilterValueChange={setEnteredFilterValue}
+                    />
+                </CapRow>
+
+                {/* Centered Balance and Expenses Section */}
+                <CapRow
+                    gap="large"
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginBottom: 16
+                    }}
+                >
+                    <CapHeading type="h4" style={{ color: '#52c41a', fontSize: '20px' }}>
+                        Balance: ₹{balance}
+                    </CapHeading>
+                    <CapHeading type="h4" style={{ color: '#f5222d', fontSize: '20px' }}>
+                        Expenses: ₹{totalExpenses}
+                    </CapHeading>
+                </CapRow>
+
+                {/* Expense List Section */}
+                <ExpenseList className={className} />
+            </CapRow>
         </>
     );
 };
 
-
-
-const mapStateToProps = state => 
-    createStructuredSelector({
-    expenses: makeExpensesSelector(state),
-    loading: makeLoadingSelector(state),
-    error: makeErrorSelector(state),
+const mapStateToProps = createStructuredSelector({
+    expenses: makeExpensesSelector(),
+    loading: makeLoadingSelector(),
+    error: makeErrorSelector(),
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch),
+    actions: bindActionCreators(actions, dispatch),
 });
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withSaga = injectSaga({ key: 'expenses', saga });
-const withReducer = injectReducer({
-  key: 'expenses',
-  reducer: expenseReducer,
-});
-
-
+const withReducer = injectReducer({ key: 'expenses', reducer: expenseReducer });
 
 export default compose(
-  withSaga,
-  withReducer,
-  withConnect,
+    withSaga,
+    withReducer,
+    withConnect,
 )(ExpenseHome);
-
-// export default connect(mapStateToProps, mapDispatchToProps,)(ExpensetrackerHome);
-// export default ExpensetrackerHome;
