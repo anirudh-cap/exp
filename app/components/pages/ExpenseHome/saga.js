@@ -4,12 +4,9 @@ import * as types from './constants';
 const JsonUrl = "http://localhost:8001/expenses";
 
 function* fetchExpenseSaga() {
-    // console.log("inside worker saga");
     try {
-        // console.log("inside FetchWorkerSaga");
         const response = yield call(fetch, JsonUrl);
         const data = yield response.json();
-        // console.log("data", data);
         yield put({ type: types.FETCH_EXPENSE_SUCCESS, payload: data });
     } catch (error) {
         yield put({ type: types.FETCH_EXPENSE_FAILURE, payload: error.message });
@@ -17,7 +14,6 @@ function* fetchExpenseSaga() {
 }
 
 function* addExpenseRequest(action) {
-    console.log("inside addExpenseRequest");
     try {
         const response = yield call(() =>
             fetch(JsonUrl, {
@@ -54,7 +50,6 @@ function* delExpenseRequest(action) {
                 method: "DELETE",
             })
         );
-        // Dispatch success with the deleted expense id
         yield put({ type: types.DELETE_EXPENSE_SUCCESS, payload: action.payload });
     } catch (error) {
         yield put({ type: types.DELETE_EXPENSE_FAILURE, payload: error });
@@ -85,12 +80,3 @@ export default function*() {
         watchEditExpenseRequests(),
     ]);
 }
-
-// for delExpenseRequest
-// yield call(() =>
-//     fetch(`${JsonUrl}/${action.payload}`, {
-//         method: "DELETE",
-//     })
-// );
-// // Dispatch success with the deleted expense id
-// yield put({ type: types.DELETE_EXPENSE_SUCCESS, payload: action.payload });
