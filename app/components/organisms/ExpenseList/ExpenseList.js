@@ -74,7 +74,7 @@ const ExpenseList = ({ className, expenses, loading, error, actions }) => {
             key: 'remove_expense',
             width: '15%',
             render: (_, record) => (
-                <CapButton type="danger" onClick={() => handleRemove(record.key)}>
+                <CapButton type="secondary" onClick={() => handleRemove(record.key)}>
                     Remove
                 </CapButton>
             ),

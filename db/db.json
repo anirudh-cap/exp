@@ -20,6 +20,13 @@
       "amount": 2000,
       "date": "2025-02-08",
       "category": "Entertainment"
+    },
+    {
+      "id": "4",
+      "description": "mall",
+      "amount": 500,
+      "date": "2025-02-08",
+      "category": "Utilities"
     }
   ]
 }
