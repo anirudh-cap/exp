@@ -14,19 +14,34 @@ function* fetchExpenseSaga() {
 }
 
 function* addExpenseRequest(action) {
-  try {
-    const response = yield call(() =>
-      fetch(JsonUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(action.payload),
-      }).then(res => res.json()),
-    );
-    yield put({ type: types.ADD_EXPENSE_SUCCESS, payload: response });
-  } catch (error) {
-    yield put({ type: types.ADD_EXPENSE_FAILURE, payload: error });
+    try {
+      // Fetch the existing expenses first
+      const response = yield call(fetch, JsonUrl);
+      const expenses = yield response.json();
+  
+      // Find the highest existing ID and increment it
+      const maxId = expenses.length > 0 ? Math.max(...expenses.map(exp => parseInt(exp.id, 10))) : 0;
+      const newId = (maxId + 1).toString(); // Convert back to string if needed
+  
+      // Create the new expense with the incremented ID
+      const newExpense = { ...action.payload, id: newId };
+  
+      // Send the new expense to the API
+      const postResponse = yield call(() =>
+        fetch(JsonUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newExpense),
+        }).then(res => res.json())
+      );
+  
+      // Dispatch success action with the updated expense
+      yield put({ type: types.ADD_EXPENSE_SUCCESS, payload: postResponse });
+    } catch (error) {
+      yield put({ type: types.ADD_EXPENSE_FAILURE, payload: error.message });
+    }
   }
-}
+  
 
 function* editExpenseRequest(action) {
   try {

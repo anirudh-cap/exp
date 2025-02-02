@@ -1,13 +1,6 @@
 {
   "expenses": [
     {
-      "id": "10",
-      "amount": 700,
-      "category": "Entertainment",
-      "date": "2024-01-20",
-      "description": "Movie night"
-    },
-    {
       "id": "11",
       "amount": 700,
       "category": "Entertainment",
@@ -34,6 +27,13 @@
       "category": "Entertainment",
       "date": "2024-01-20",
       "description": "Movie night"
+    },
+    {
+      "id": "15",
+      "description": "dasf",
+      "amount": 123,
+      "date": "2025-02-05",
+      "category": "Utilities"
     }
   ]
 }
