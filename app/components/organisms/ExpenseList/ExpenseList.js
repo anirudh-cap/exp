@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { CapHeading, CapButton, CapInput, CapSelect } from '@capillarytech/cap-ui-library';
-import { Table } from 'antd';
+import { Table, Modal } from 'antd';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../pages/ExpenseHome/actions';
 import { createStructuredSelector } from 'reselect';
 import { makeExpensesSelector, makeLoadingSelector, makeErrorSelector } from '../../pages/ExpenseHome/selectors';
 
 const ExpenseList = ({ className, expenses, loading, error, actions }) => {
-    const [isFormVisible, setIsFormVisible] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [expenseName, setExpenseName] = useState('');
     const [expenseAmount, setExpenseAmount] = useState('');
     const [expenseDate, setExpenseDate] = useState('');
@@ -19,12 +19,14 @@ const ExpenseList = ({ className, expenses, loading, error, actions }) => {
     };
 
     const handleAddExpense = () => {
-        setIsFormVisible(true);
+        setIsModalVisible(true);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
+    const handleSubmit = () => {
         const newExpense = {
             description: expenseName,
             amount: parseFloat(expenseAmount),
@@ -34,12 +36,12 @@ const ExpenseList = ({ className, expenses, loading, error, actions }) => {
 
         actions.addExpenseRequest(newExpense);
 
-        // Reset form fields and hide the form
+        // Reset form fields and hide the modal
         setExpenseName('');
         setExpenseAmount('');
         setExpenseDate('');
         setExpenseCategory('');
-        setIsFormVisible(false);
+        setIsModalVisible(false);
     };
 
     // Convert Immutable.js List to plain JavaScript array
@@ -102,50 +104,57 @@ const ExpenseList = ({ className, expenses, loading, error, actions }) => {
                 Add Expense
             </CapButton>
 
-            {/* Add Expense Form */}
-            {isFormVisible && (
-                <form onSubmit={handleSubmit} style={{ marginBottom: 16 }}>
-                    <CapInput
-                        label="Expense Name"
-                        value={expenseName}
-                        onChange={(e) => setExpenseName(e.target.value)}
-                        required
-                        style={{ marginBottom: 8 }}
-                    />
-                    <CapInput
-                        label="Amount"
-                        type="number"
-                        value={expenseAmount}
-                        onChange={(e) => setExpenseAmount(e.target.value)}
-                        required
-                        style={{ marginBottom: 8 }}
-                    />
-                    <CapInput
-                        label="Date"
-                        type="date"
-                        value={expenseDate}
-                        onChange={(e) => setExpenseDate(e.target.value)}
-                        required
-                        style={{ marginBottom: 8 }}
-                    />
-                    <CapSelect
-                        label="Category"
-                        value={expenseCategory}
-                        onChange={(value) => setExpenseCategory(value)}
-                        options={[
-                            { label: 'Food', value: 'Food' },
-                            { label: 'Utilities', value: 'Utilities' },
-                            { label: 'Transport', value: 'Transport' },
-                            { label: 'Entertainment', value: 'Entertainment' },
-                        ]}
-                        required
-                        style={{ marginBottom: 8 }}
-                    />
-                    <CapButton type="primary" htmlType="submit">
+            {/* Add Expense Modal */}
+            <Modal
+                title="Add Expense"
+                visible={isModalVisible}
+                onCancel={handleCancel}
+                footer={[
+                    <CapButton key="cancel" onClick={handleCancel}>
+                        Cancel
+                    </CapButton>,
+                    <CapButton key="submit" type="primary" onClick={handleSubmit}>
                         Submit
-                    </CapButton>
-                </form>
-            )}
+                    </CapButton>,
+                ]}
+            >
+                <CapInput
+                    label="Expense Name"
+                    value={expenseName}
+                    onChange={(e) => setExpenseName(e.target.value)}
+                    required
+                    style={{ marginBottom: 8 }}
+                />
+                <CapInput
+                    label="Amount"
+                    type="number"
+                    value={expenseAmount}
+                    onChange={(e) => setExpenseAmount(e.target.value)}
+                    required
+                    style={{ marginBottom: 8 }}
+                />
+                <CapInput
+                    label="Date"
+                    type="date"
+                    value={expenseDate}
+                    onChange={(e) => setExpenseDate(e.target.value)}
+                    required
+                    style={{ marginBottom: 8 }}
+                />
+                <CapSelect
+                    label="Category"
+                    value={expenseCategory}
+                    onChange={(value) => setExpenseCategory(value)}
+                    options={[
+                        { label: 'Food', value: 'Food' },
+                        { label: 'Utilities', value: 'Utilities' },
+                        { label: 'Transport', value: 'Transport' },
+                        { label: 'Entertainment', value: 'Entertainment' },
+                    ]}
+                    required
+                    style={{ marginBottom: 8 }}
+                />
+            </Modal>
 
             {/* Expenses Table */}
             <Table columns={columns} dataSource={data} />

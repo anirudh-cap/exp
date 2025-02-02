@@ -34,6 +34,13 @@
       "amount": 123,
       "date": "2025-02-05",
       "category": "Utilities"
+    },
+    {
+      "id": "17",
+      "description": "testexp",
+      "amount": 5000,
+      "date": "2025-02-06",
+      "category": "Transport"
     }
   ]
 }
