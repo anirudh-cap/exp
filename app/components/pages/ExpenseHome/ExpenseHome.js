@@ -9,7 +9,7 @@ import injectReducer from '@capillarytech/cap-coupons/utils/injectReducer';
 import { fetchExpenseRequest } from './actions';
 import saga from './saga';
 import reducer from './reducer';
-import NavBar from '../../organisms/NavBar1/NavBar';
+import NavBar from '../../organisms/NavBar/NavBar';
 import { useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import withStyles from '../../../utils/withStyles';

@@ -30,7 +30,6 @@ import LibSignup from '../Lib-Signup/LibSignup';
 import LibSignin from '../Lib-Signin/LibSignin';
 import AccessForbidden from '../AccessForbidden/AccessForbidden';
 import ExpenseHome from '../ExpenseHome/ExpenseHome';
-import AddExpense from '../../organisms/AddExpense';
 import ExpenseGraph from '../../organisms/ShowExpenseGraph/ExpenseGraph';
 
 const loginUrl =
@@ -56,7 +55,6 @@ export const App = () => (
         <RenderRoute exact path="/" component={HomePage} key={publicPath} />
         <RenderRoute exact path="/home" component={ExpenseHome} key={publicPath} />
         {/* <RenderRoute exact path="/" component={HomePage} /> */}
-        <RenderRoute exact path="/add-expense" component={AddExpense} />
         <RenderRoute exact path="/show-graph" component={ExpenseGraph} />
         <RenderRoute
           exact
