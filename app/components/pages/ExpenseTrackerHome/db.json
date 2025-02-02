@@ -1,13 +1,5 @@
 {
   "expenses": [
-    
-    {
-      "id": "3",
-      "amount": 5000,
-      "category": "Gym",
-      "date": "2024-02-01",
-      "description": "Gym membership for February"
-    },
     {
       "id": "4",
       "amount": 25000,
