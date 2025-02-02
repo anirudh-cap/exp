@@ -28,6 +28,12 @@ const routes = [
     type: 'adminProfilePage',
     component: lazy(() => import('../AdminProfilePage')),
   },
+  {
+    exact: true,
+    path: `${publicPath}/ExpenseHome`,
+    type: 'expenseHome',
+    component: lazy(() => import('../ExpenseHome')),
+  },
 ];
 
 export default routes;

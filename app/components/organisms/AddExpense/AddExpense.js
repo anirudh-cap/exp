@@ -4,13 +4,13 @@ import { bindActionCreators, compose } from "redux";
 import { CapRow, CapForm, CapButton } from "@capillarytech/cap-ui-library";
 import { useNavigate } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
-import * as actions from "../../pages/ExpenseTrackerHome/actions";
+import * as actions from "../../pages/ExpenseHome/actions";
 import injectSaga from "@capillarytech/cap-coupons/utils/injectSaga";
 import injectReducer from "@capillarytech/cap-coupons/utils/injectReducer";
-import saga from "../../pages/ExpenseTrackerHome/saga";
-import expenseReducer from "../../pages/ExpenseTrackerHome/reducer";
-import { addExpenseRequest } from "../../pages/ExpenseTrackerHome/actions";
-import { makeErrorSelector, makeExpensesSelector, makeLoadingSelector } from "../../pages/ExpenseTrackerHome/selectors";
+import saga from "../../pages/ExpenseHome/saga";
+import expenseReducer from "../../pages/ExpenseHome/reducer";
+import { addExpenseRequest } from "../../pages/ExpenseHome/actions";
+import { makeErrorSelector, makeExpensesSelector, makeLoadingSelector } from "../../pages/ExpenseHome/selectors";
 
 const AddExpense = ({ addExpenseRequest, expenses, loading, error }) => {
     console.log("expenses from AddExpense:", expenses);

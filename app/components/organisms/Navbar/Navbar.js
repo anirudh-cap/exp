@@ -34,6 +34,11 @@ const Navbar = ({ className }) => {
         link: '/profile-page',
         key: 'profile-page',
       },
+      {
+        label: 'ExpenseHome',
+        link: '/ExpenseHome',
+        key: 'expensehome',
+      },
     ],
 
     onMenuItemClick: ({ link }) => {

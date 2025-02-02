@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { CapHeading, CapButton } from '@capillarytech/cap-ui-library';
 import { Table } from 'antd';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../pages/ExpenseTrackerHome/actions';
+import * as actions from '../../pages/ExpenseHome/actions';
 import { createStructuredSelector } from 'reselect';
 import injectSaga from '@capillarytech/cap-coupons/utils/injectSaga';
 import injectReducer from '@capillarytech/cap-coupons/utils/injectReducer';
-import saga from '../../pages/ExpenseTrackerHome/saga';
-import { expenseReducer } from '../../pages/ExpenseTrackerHome/reducer';
-import { makeExpensesSelector, makeLoadingSelector, makeErrorSelector } from '../../pages/ExpenseTrackerHome/selectors';
+import saga from '../../pages/ExpenseHome/saga';
+import { expenseReducer } from '../../pages/ExpenseHome/reducer';
+import { makeExpensesSelector, makeLoadingSelector, makeErrorSelector } from '../../pages/ExpenseHome/selectors';
 
 const ExpenseList = ({ className, expenses, loading, error, actions}) => {
     

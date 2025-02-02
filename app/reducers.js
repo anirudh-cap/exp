@@ -9,7 +9,7 @@ import history from 'utils/history';
 import languageProviderReducer from './components/pages/LanguageProvider/reducer';
 import capReducer from './components/pages/Cap/reducer';
 import bookListReducer from './components/pages/HomePage/reducer';
-import expenseReducer from './components/pages/ExpenseTrackerHome/reducer';
+import expenseReducer from './components/pages/ExpenseHome/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers

@@ -29,7 +29,7 @@ import NewBookRequest from '../NewBookRequest';
 import LibSignup from '../Lib-Signup/LibSignup';
 import LibSignin from '../Lib-Signin/LibSignin';
 import AccessForbidden from '../AccessForbidden/AccessForbidden';
-import ExpensetrackerHome from '../ExpenseTrackerHome/ExpensetrackerHome';
+import ExpenseHome from '../ExpenseHome/ExpenseHome';
 import AddExpense from '../../organisms/AddExpense';
 import ExpenseGraph from '../../organisms/ShowExpenseGraph/ExpenseGraph';
 
@@ -54,7 +54,7 @@ export const App = () => (
 
         {/* <RenderRoute exact path={loginUrl} component={Login} /> */}
         <RenderRoute exact path="/" component={HomePage} key={publicPath} />
-        <RenderRoute exact path="/home" component={ExpensetrackerHome} key={publicPath} />
+        <RenderRoute exact path="/home" component={ExpenseHome} key={publicPath} />
         {/* <RenderRoute exact path="/" component={HomePage} /> */}
         <RenderRoute exact path="/add-expense" component={AddExpense} />
         <RenderRoute exact path="/show-graph" component={ExpenseGraph} />
@@ -75,6 +75,7 @@ export const App = () => (
           path="/AccessForbidden"
           component={AccessForbidden}
         />
+        <RenderRoute exact path="/ExpenseHome" component={ExpenseHome} />
         <RenderRoute component={NotFoundPage} />
       </Switch>
     </ConnectedRouter>

@@ -21,7 +21,7 @@ import {
     makeLoadingSelector
 } from './selectors';
 
-const ExpensetrackerHome = ({className, expenses, loading, error, actions}) => {
+const ExpenseHome = ({className, expenses, loading, error, actions}) => {
     console.log('expenses from home', expenses);
     const [enteredFilterValue, setEnteredFilterValue] = useState('');
     const [filterBy, selectedFilterBy] = useState('BY_NAME');
@@ -103,7 +103,7 @@ export default compose(
   withSaga,
   withReducer,
   withConnect,
-)(ExpensetrackerHome);
+)(ExpenseHome);
 
 // export default connect(mapStateToProps, mapDispatchToProps,)(ExpensetrackerHome);
 // export default ExpensetrackerHome;
