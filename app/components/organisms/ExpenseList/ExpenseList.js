@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { CapHeading, CapButton, CapInput, CapSelect } from '@capillarytech/cap-ui-library';
-import { Table, Modal } from 'antd';
+import { CapRow, CapTable, CapModal, CapHeading, CapButton, CapInput, CapSelect } from '@capillarytech/cap-ui-library';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../pages/ExpenseHome/actions';
 import { createStructuredSelector } from 'reselect';
@@ -98,14 +97,14 @@ const ExpenseList = ({ className, expenses, loading, error, actions }) => {
     }
 
     return (
-        <div>
+        <CapRow>
             {/* Add Expense Button */}
             <CapButton type="primary" onClick={handleAddExpense} style={{ marginBottom: 16 }}>
                 Add Expense
             </CapButton>
 
             {/* Add Expense Modal */}
-            <Modal
+            <CapModal
                 title="Add Expense"
                 visible={isModalVisible}
                 onCancel={handleCancel}
@@ -154,11 +153,11 @@ const ExpenseList = ({ className, expenses, loading, error, actions }) => {
                     required
                     style={{ marginBottom: 8 }}
                 />
-            </Modal>
+            </CapModal>
 
             {/* Expenses Table */}
-            <Table columns={columns} dataSource={data} />
-        </div>
+            <CapTable columns={columns} style={{backgroundColor:'#f0f2ff'}}dataSource={data} />
+        </CapRow>
     );
 };
 

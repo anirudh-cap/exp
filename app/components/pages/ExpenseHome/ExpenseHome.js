@@ -70,6 +70,7 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
             onChange={handleSearch}
             value={enteredFilterValue}
             style={{ width: '90%' }}
+            
           />
         </CapRow>
 

@@ -1,5 +1,5 @@
 module.exports = {
-  appName: 'library_management_app',
+  appName: 'Expense Tracker App',
   prefix: '/',
   isHostedOnPlatform: true,
   appType: 'native',

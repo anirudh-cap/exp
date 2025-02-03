@@ -55,7 +55,7 @@ export const App = () => (
         <RenderRoute exact path="/" component={HomePage} key={publicPath} />
         <RenderRoute exact path="/home" component={ExpenseHome} key={publicPath} />
         {/* <RenderRoute exact path="/" component={HomePage} /> */}
-        <RenderRoute exact path="/show-graph" component={ExpenseGraph} />
+        
         <RenderRoute
           exact
           path="/profile-page"
@@ -74,6 +74,7 @@ export const App = () => (
           component={AccessForbidden}
         />
         <RenderRoute exact path="/ExpenseHome" component={ExpenseHome} />
+        <RenderRoute exact path="/show-graph" component={ExpenseGraph} />
         <RenderRoute component={NotFoundPage} />
       </Switch>
     </ConnectedRouter>

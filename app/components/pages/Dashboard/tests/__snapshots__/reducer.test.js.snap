@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Dashboard Reducer it handles the reducer with default type 1`] = `
-Immutable.Map {
-  "updateProgramsTableStatus": "",
-  "programDetails": Immutable.List [],
-  "programDetailsError": null,
-}
-`;

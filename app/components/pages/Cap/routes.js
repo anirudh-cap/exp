@@ -34,6 +34,18 @@ const routes = [
     type: 'expenseHome',
     component: lazy(() => import('../ExpenseHome')),
   },
+  {
+    exact: true,
+    path: `${publicPath}/ExpenseGraph`,
+    type: 'expenseGraph',
+    component: lazy(() => import('../ExpenseGraph')),
+  },
+  {
+    exact: true,
+    path: `${publicPath}/DetailView`,
+    type: 'detailView',
+    component: lazy(() => import('../DetailView')),
+  },
 ];
 
 export default routes;

@@ -12,10 +12,6 @@ import { publicPath } from '../../../config/path';
 const Navbar = ({ className }) => {
   const history = useHistory();
 
-  const handleSignout = () => {
-    localStorage.clear();
-    history.push(`/libSignin`);
-  };
 
   const menuItems = {
     items: [
@@ -25,6 +21,16 @@ const Navbar = ({ className }) => {
         link: '/ExpenseHome',
         key: 'expensehome',
       },
+      {
+        label: 'GraphView',
+        link: '/ExpenseGraph',
+        key: 'expensegraph',
+      },
+      {
+        label: 'DetailView',
+        link: '/DetailView',
+        key: 'DetailView',
+      }
     ],
 
     onMenuItemClick: ({ link }) => {
@@ -32,24 +38,7 @@ const Navbar = ({ className }) => {
     },
   };
 
-  const ifUserAdmin = localStorage.getItem('userType');
-  if (ifUserAdmin === 'admin') {
-    menuItems.items.push({
-      label: 'Admin Page',
-      link: '/admin',
-      key: 'administrator',
-    });
-  }
-
-  menuItems.items.push({
-    label: (
-      <CapButton type="secondary" onClick={handleSignout}>
-        Sign-out
-      </CapButton>
-    ),
-    link: '/libSignin',
-    key: 'admin',
-  });
+  
 
   return (
     <CapRow className={className}>
