@@ -19,21 +19,7 @@ const Navbar = ({ className }) => {
 
   const menuItems = {
     items: [
-      {
-        label: 'Capillary Library',
-        link: '/',
-        key: 'home-page',
-      },
-      {
-        label: 'New Request',
-        link: '/new-book-request',
-        key: 'new-book-request',
-      },
-      {
-        label: 'Profile',
-        link: '/profile-page',
-        key: 'profile-page',
-      },
+      
       {
         label: 'ExpenseHome',
         link: '/ExpenseHome',

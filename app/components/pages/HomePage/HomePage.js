@@ -4,7 +4,6 @@ import { createStructuredSelector } from 'reselect';
 import { CapNotification, CapRow } from '@capillarytech/cap-ui-library';
 import { useHistory } from 'react-router';
 import BookList from '../../organisms/BookList/BookList';
-import Filter from '../../organisms/Filter/Filter';
 import { fetchBookList } from './actions';
 import {
   makeAllBookListSelector,
@@ -91,12 +90,7 @@ const HomePage = ({
       <Navbar />
       <CapRow className={className}>
         <CapRow className="requests-container">
-          <Filter
-            selectedFilterBy={filterBy}
-            handleFilterByChange={setFilterBy}
-            filterValue={enteredFilterValue}
-            handleFilterValueChange={onFilterValueChange}
-          />
+          
           <BookList
             pagination={{
               current: currentPageNumber,

@@ -9,7 +9,6 @@ import {
   CapInput,
   CapSelect,
 } from '@capillarytech/cap-ui-library';
-import Filter from '../../organisms/Filter/Filter';
 import ExpenseList from '../../organisms/ExpenseList/ExpenseList';
 import injectSaga from '@capillarytech/cap-coupons/utils/injectSaga';
 import injectReducer from '@capillarytech/cap-coupons/utils/injectReducer';
@@ -28,7 +27,6 @@ import { size } from 'lodash';
 
 const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
   const [enteredFilterValue, setEnteredFilterValue] = useState('');
-  const [filterBy, selectedFilterBy] = useState('BY_NAME');
 
   useEffect(() => {
     actions.fetchExpenseRequest();
@@ -71,7 +69,7 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
             placeholder="Search any term"
             onChange={handleSearch}
             value={enteredFilterValue}
-            style={{ width: '45%' }}
+            style={{ width: '90%' }}
           />
         </CapRow>
 
