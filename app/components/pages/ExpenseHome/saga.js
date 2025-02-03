@@ -2,6 +2,7 @@ import { call, put, all, takeLatest } from 'redux-saga/effects';
 import * as types from './constants';
 
 const JsonUrl = 'http://localhost:8001/expenses';
+const JsonUrlSearch = 'http://localhost:8001/expenses?q=';
 
 function* fetchExpenseSaga() {
   try {
@@ -71,6 +72,23 @@ function* delExpenseRequest(action) {
   }
 }
 
+function* searchTerm(action) {
+  try {
+    const response = yield call(fetch, `${JsonUrlSearch}${action.payload}`);
+    const data = yield response.json();
+    
+    console.log("searchTerm is called", data);
+
+    yield put({ type: types.FETCH_EXPENSE_SUCCESS, payload: data }); // FIX HERE
+  } catch (error) {
+    yield put({ type: types.FETCH_EXPENSE_FAILURE, payload: error.message });
+  }
+}
+
+export function* watchSearchTermeRequests() {
+  yield takeLatest(types.SEARCH_TERM, searchTerm);
+}
+
 export function* watchAddExpenseRequests() {
   yield takeLatest(types.ADD_EXPENSE_REQUEST, addExpenseRequest);
 }
@@ -93,5 +111,6 @@ export default function*() {
     watchDeleteExpenseRequests(),
     watchFetchExpenseRequests(),
     watchEditExpenseRequests(),
+    watchSearchTermeRequests(),
   ]);
 }

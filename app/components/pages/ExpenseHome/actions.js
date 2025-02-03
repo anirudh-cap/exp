@@ -14,6 +14,7 @@ import {
     EDIT_EXPENSE_FAILURE,
     SET_LOADING,
     FILTERED_BY_MONTH,
+    SEARCH_TERM,
 } from "./constants";
 
 export const addExpenseRequest = (expense) => ({
@@ -84,3 +85,8 @@ export const filterByMonth = (month) => ({
     type: FILTERED_BY_MONTH,
     payload: month,
 });
+
+export const searchTerm = (query) =>({
+    type: SEARCH_TERM,
+    payload: query,
+})

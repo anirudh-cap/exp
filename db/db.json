@@ -27,6 +27,48 @@
       "amount": 500,
       "date": "2025-02-08",
       "category": "Utilities"
+    },
+    {
+      "id": "5",
+      "description": "mall",
+      "amount": 1990,
+      "date": "2025-02-06",
+      "category": "Food"
+    },
+    {
+      "id": "6",
+      "description": "capillary",
+      "amount": 997,
+      "date": "2025-02-06",
+      "category": "Transport"
+    },
+    {
+      "description": "erg",
+      "amount": 435,
+      "date": "2025-01-29",
+      "category": "Utilities",
+      "id": "12"
+    },
+    {
+      "description": "rwe",
+      "amount": 324,
+      "date": "2025-02-07",
+      "category": "Utilities",
+      "id": "13"
+    },
+    {
+      "description": "erwer",
+      "amount": 23423,
+      "date": "2025-02-01",
+      "category": "Food",
+      "id": "14"
+    },
+    {
+      "description": "sadf",
+      "amount": 2332,
+      "date": "2025-02-07",
+      "category": "Utilities",
+      "id": "17"
     }
   ]
 }

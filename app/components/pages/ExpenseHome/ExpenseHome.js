@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import { CapRow, CapHeading } from '@capillarytech/cap-ui-library';
+import { CapRow, CapHeading, CapInput, CapSelect } from '@capillarytech/cap-ui-library';
 import Filter from '../../organisms/Filter/Filter';
 import ExpenseList from '../../organisms/ExpenseList/ExpenseList';
 import injectSaga from '@capillarytech/cap-coupons/utils/injectSaga';
@@ -19,6 +19,7 @@ import {
     makeErrorSelector,
     makeLoadingSelector
 } from './selectors';
+import { size } from 'lodash';
 
 const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
     const [enteredFilterValue, setEnteredFilterValue] = useState('');
@@ -32,15 +33,19 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
     const totalExpenses = expenses.reduce((sum, expense) => sum + expense.get('amount'), 0);
     const balance = 100000 - totalExpenses;
 
-    function getFilterKey() {
-      switch (filterBy) {
-        case 'BY_ID': return 'id';
-        case 'BY_NAME': return 'name';
-        case 'BY_CATEGORY': return 'category';
-        default: return '';      
-      }
-    }
+    const handleSearch = (event) => {
+      const value = event.target.value;
+      setEnteredFilterValue(value);  
+      console.log("Search triggered with: ", value); 
+      actions.searchTerm(value); 
+    };
+    
 
+    const filteredExpenses = expenses.filter(expense => {
+      const name = expense.get('name', '');  // Provide a default empty string
+      return name.toLowerCase().includes(enteredFilterValue.toLowerCase());
+    });
+    
     return (
         <>
             <NavBar />
@@ -53,15 +58,20 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
                     alignItems: 'center'
                 }}
             >
-                {/* Filter Section */}
+                {/* Search Section */}
                 <CapRow style={{ width: '100%', marginBottom: 16 }}>
-                    <Filter
-                        selectedFilterBy={filterBy}
-                        handleFilterByChange={selectedFilterBy}
-                        filterValue={enteredFilterValue}
-                        handleFilterValueChange={setEnteredFilterValue}
+                    <CapInput
+                      placeholder="Search any term"
+                      onChange={handleSearch}
+                      value={enteredFilterValue}
                     />
+                    
                 </CapRow>
+
+                {/* Filter Section */}
+                
+
+                
 
                 {/* Centered Balance and Expenses Section */}
                 <CapRow
@@ -76,12 +86,12 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
                         Balance: ₹{balance}
                     </CapHeading>
                     <CapHeading type="h4" style={{ color: '#f5222d', fontSize: '20px' }}>
-                        Expenses: ₹{totalExpenses}
+                        Expenditure: ₹{totalExpenses}
                     </CapHeading>
                 </CapRow>
 
                 {/* Expense List Section */}
-                <ExpenseList className={className} />
+                <ExpenseList className={className} expense={filteredExpenses}/>
             </CapRow>
         </>
     );

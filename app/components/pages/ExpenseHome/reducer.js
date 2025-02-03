@@ -11,6 +11,8 @@ export const expenseReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_EXPENSE_REQUEST:
       return state.set('loading', true).set('error', null);
+      case types.SEARCH_TERM:
+        return state.set('error', null);      
     case types.ADD_EXPENSE_SUCCESS:
       return state
         .set('loading', false)
