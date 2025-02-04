@@ -1,5 +1,3 @@
-// ExpenseHome.js
-
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
@@ -8,6 +6,7 @@ import {
   CapHeading,
   CapInput,
   CapSelect,
+  CapButton,
 } from '@capillarytech/cap-ui-library';
 import ExpenseList from '../../organisms/ExpenseList/ExpenseList';
 import injectSaga from '@capillarytech/cap-coupons/utils/injectSaga';
@@ -24,10 +23,11 @@ import {
   makeErrorSelector,
   makeLoadingSelector,
 } from './selectors';
-import { size } from 'lodash';
 
 const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
   const [enteredFilterValue, setEnteredFilterValue] = useState('');
+  const [balance, setBalance] = useState(0); // Actual balance
+  const [tempBalance, setTempBalance] = useState(0); // Temporary balance for input field
 
   useEffect(() => {
     actions.fetchExpenseRequest();
@@ -38,21 +38,36 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
     (sum, expense) => sum + expense.get('amount'),
     0,
   );
-  const balance = 100000 - totalExpenses;
 
-  const handleSearch = event => {
+  const handleBalanceChange = (event) => {
+    const value = event.target.value;
+    setTempBalance(value); // Update temporary balance
+  };
+
+  const handleBalanceUpdate = () => {
+    setBalance(Number(tempBalance)); // Update actual balance when "Update" is clicked
+  };
+
+  const handleBalanceReset = () => {
+    setBalance(0); // Reset actual balance
+    setTempBalance(0); // Reset temporary balance
+  };
+
+  const remainingBalance = balance - totalExpenses;
+
+  const handleSearch = (event) => {
     const value = event.target.value;
     setEnteredFilterValue(value);
     console.log('Search triggered with: ', value);
     actions.searchTerm(value);
   };
 
-  const filteredExpenses = expenses.filter(expense => {
+  const filteredExpenses = expenses.filter((expense) => {
     const name = expense.get('name', ''); // Provide a default empty string
     return name.toLowerCase().includes(enteredFilterValue.toLowerCase());
   });
 
-  const handleSortChange = selectedOption => {
+  const handleSortChange = (selectedOption) => {
     actions.sortExpenses(selectedOption);
   };
 
@@ -87,8 +102,28 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
             ]}
             width="100px"
             defaultValue="Sort By"
-            onChange={selected => handleSortChange(selected)}
+            onChange={(selected) => handleSortChange(selected)}
           />
+        </CapRow>
+
+        <CapRow
+          style={{
+            width: '100%',
+            marginBottom: 16,
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}
+        >
+          <CapInput
+            placeholder="Enter your Balance"
+            onChange={handleBalanceChange}
+            value={tempBalance} // Bind to tempBalance
+            style={{ width: '20%', marginRight: '10px' }} // Adds spacing
+          />
+          <CapButton onClick={handleBalanceUpdate}>Update</CapButton>
+          <CapButton value="Reset" onClick={handleBalanceReset}>
+            Reset
+          </CapButton>
         </CapRow>
 
         {/* Centered Balance and Expenses Section */}
@@ -101,7 +136,7 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
           }}
         >
           <CapHeading type="h4" style={{ color: '#52c41a', fontSize: '20px' }}>
-            Balance: ₹{balance}
+            Balance: ₹{remainingBalance}
           </CapHeading>
           <CapHeading type="h4" style={{ color: '#f5222d', fontSize: '20px' }}>
             Expenditure: ₹{totalExpenses}
@@ -121,20 +156,13 @@ const mapStateToProps = createStructuredSelector({
   error: makeErrorSelector(),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actions, dispatch),
   actions: bindActionCreators({ ...actions, sortExpenses }, dispatch),
 });
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withSaga = injectSaga({ key: 'expenses', saga });
 const withReducer = injectReducer({ key: 'expenses', reducer: expenseReducer });
 
-export default compose(
-  withSaga,
-  withReducer,
-  withConnect,
-)(ExpenseHome);
+export default compose(withSaga, withReducer, withConnect)(ExpenseHome);

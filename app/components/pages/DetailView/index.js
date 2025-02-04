@@ -1,1 +1,1 @@
-export { default } from './ExpenseHome';
+export { default } from './DetailView';
