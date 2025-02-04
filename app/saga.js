@@ -1,6 +1,5 @@
 import { all } from 'redux-saga/effects';
-import { watchForBookListSaga } from './components/pages/HomePage/saga';
-
+import {loginFlow, logoutFlow} from './components/pages/Cap/saga';
 export default function*() {
-  yield all([watchForBookListSaga()]);
+  yield all([loginFlow()]);
 }

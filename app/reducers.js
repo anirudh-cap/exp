@@ -8,7 +8,6 @@ import { connectRouter } from 'connected-react-router/immutable';
 import history from 'utils/history';
 import languageProviderReducer from './components/pages/LanguageProvider/reducer';
 import capReducer from './components/pages/Cap/reducer';
-import bookListReducer from './components/pages/HomePage/reducer';
 import expenseReducer from './components/pages/ExpenseHome/reducer';
 
 /**
@@ -18,7 +17,6 @@ export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     language: languageProviderReducer,
     loyaltyCap: capReducer,
-    bookList: bookListReducer,
     expenses: expenseReducer,
     ...injectedReducers,
   });

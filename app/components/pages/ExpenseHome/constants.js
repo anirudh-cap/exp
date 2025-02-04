@@ -21,6 +21,3 @@ export const SET_LOADING = "SET_LOADING";
 
 export const SEARCH_TERM = "SEARCH_TERM";
 export const SORT_EXPENSES = "SORT_EXPENSES";
-
-
-

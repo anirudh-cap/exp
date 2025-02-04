@@ -1,74 +1,39 @@
 {
   "expenses": [
     {
-      "id": "1",
-      "description": "movie",
-      "amount": 200,
-      "date": "2025-02-06",
-      "category": "Utilities"
-    },
-    {
-      "id": "2",
-      "description": "something",
-      "amount": 500,
-      "date": "2025-01-30",
-      "category": "Utilities"
-    },
-    {
-      "id": "4",
-      "description": "mall",
-      "amount": 500,
-      "date": "2025-02-08",
-      "category": "Utilities"
-    },
-    {
-      "id": "5",
-      "description": "mall",
-      "amount": 1990,
-      "date": "2025-02-06",
-      "category": "Food"
-    },
-    {
-      "id": "6",
-      "description": "capillary",
-      "amount": 997,
-      "date": "2025-02-06",
-      "category": "Transport"
-    },
-    {
-      "description": "rwe",
-      "amount": 324,
-      "date": "2025-02-07",
-      "category": "Utilities",
-      "id": "13"
-    },
-    {
-      "description": "bus",
-      "amount": 3,
-      "date": "2025-02-07",
-      "category": "Transport",
-      "id": "14"
-    },
-    {
-      "description": "dafs",
-      "amount": 3,
-      "date": "2025-02-07",
-      "category": "Entertainment",
-      "id": "15"
-    },
-    {
-      "description": "enter",
-      "amount": 10000,
-      "date": "2025-02-07",
-      "category": "Entertainment",
-      "id": "16"
-    },
-    {
       "description": "burger",
       "amount": 5000,
-      "date": "2025-01-30",
+      "date": "2025-02-08",
       "category": "Food",
-      "id": "17"
+      "id": "1"
+    },
+    {
+      "description": "scooter",
+      "amount": 50000,
+      "date": "2025-02-06",
+      "category": "Transport",
+      "id": "2"
+    },
+    {
+      "description": "park",
+      "amount": 4000,
+      "date": "2025-02-08",
+      "category": "Entertainment",
+      "id": "3"
+    },
+    {
+      "description": "books",
+      "amount": 3000,
+      "date": "2025-02-10",
+      "category": "Utilities",
+      "id": "4"
+    },
+    {
+      "description": "car",
+      "amount": 30000,
+      "date": "2025-01-16",
+      "category": "Transport",
+      "id": "5"
     }
   ]
 }

@@ -162,7 +162,7 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
             placeholder="Search any term"
             onChange={handleSearch}
             value={enteredFilterValue}
-            style={{ width: '1221px', marginRight: '12px' }}
+            style={{ width: '1140px', marginRight: '12px' }}
           />
           <CapSelect
             options={[

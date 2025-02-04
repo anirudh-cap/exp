@@ -18,7 +18,6 @@ import 'sanitize.css/sanitize.css';
 // Import root app
 import App from './components/pages/App';
 import { IntlProvider } from 'react-intl';
-import LanguageProvider from './components/pages/LanguageProvider';
 import SomethingWentWrong from './components/pages/SomethingWentWrong';
 
 /* eslint-disable import/no-unresolved, import/extensions */
