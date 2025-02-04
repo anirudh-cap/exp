@@ -41,6 +41,20 @@
       "date": "2025-02-07",
       "category": "Utilities",
       "id": "13"
+    },
+    {
+      "description": "bus",
+      "amount": 3,
+      "date": "2025-02-07",
+      "category": "Transport",
+      "id": "14"
+    },
+    {
+      "description": "dafs",
+      "amount": 3,
+      "date": "2025-02-07",
+      "category": "Entertainment",
+      "id": "15"
     }
   ]
 }

@@ -9,13 +9,13 @@ import {
   CapButton,
   CapModal,
 } from '@capillarytech/cap-ui-library';
-import ExpenseList from '../../organisms/ExpenseList/ExpenseList';
 import injectSaga from '@capillarytech/cap-coupons/utils/injectSaga';
 import injectReducer from '@capillarytech/cap-coupons/utils/injectReducer';
+import { createStructuredSelector } from 'reselect';
+import ExpenseList from '../../organisms/ExpenseList/ExpenseList';
 import saga from './saga';
 import reducer from './reducer';
 import NavBar from '../../organisms/NavBar/NavBar';
-import { createStructuredSelector } from 'reselect';
 import * as actions from './actions';
 import { sortExpenses } from './actions';
 import { expenseReducer } from './reducer';
@@ -152,7 +152,7 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
           <CapButton
             type="primary"
             onClick={handleAddExpense}
-            style={{ marginBottom: 16, marginRight:'12px'}}
+            style={{ marginBottom: 16, marginRight: '12px' }}
           >
             Add Expense
           </CapButton>
