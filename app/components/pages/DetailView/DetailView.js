@@ -45,7 +45,11 @@ const DetailView = ({ className }) => {
         <CapHeading type="h2" style={{ margin: '12px' }}>
           Expense Summary
         </CapHeading>
-        <CapTable className="detail-table" dataSource={expenseData} columns={columns} />
+        <CapTable
+          className="detail-table"
+          dataSource={expenseData}
+          columns={columns}
+        />
       </CapRow>
     </>
   );

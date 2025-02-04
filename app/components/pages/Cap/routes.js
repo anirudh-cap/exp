@@ -4,7 +4,6 @@ import * as path from '../../../config/path';
 const { publicPath } = path;
 
 const routes = [
-
   {
     exact: true,
     path: `${publicPath}/accessForbidden`,

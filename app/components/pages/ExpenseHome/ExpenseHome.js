@@ -43,9 +43,9 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
 
   const totalExpenses = expenses.reduce(
     (sum, expense) => sum + parseFloat(expense.amount || 0),
-    0
+    0,
   );
-  
+
   const remainingBalance = balance - totalExpenses;
 
   const handleBalanceChange = event => setTempBalance(event.target.value);
@@ -64,9 +64,8 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
   const filteredExpenses = expenses.filter(expense =>
     (expense.name || '')
       .toLowerCase()
-      .includes(enteredFilterValue.toLowerCase())
+      .includes(enteredFilterValue.toLowerCase()),
   );
-  
 
   const handleSortChange = selectedOption => {
     actions.sortExpenses(selectedOption);
