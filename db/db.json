@@ -55,6 +55,20 @@
       "date": "2025-02-07",
       "category": "Entertainment",
       "id": "15"
+    },
+    {
+      "description": "enter",
+      "amount": 10000,
+      "date": "2025-02-07",
+      "category": "Entertainment",
+      "id": "16"
+    },
+    {
+      "description": "burger",
+      "amount": 5000,
+      "date": "2025-01-30",
+      "category": "Food",
+      "id": "17"
     }
   ]
 }

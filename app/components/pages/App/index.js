@@ -30,8 +30,11 @@ import LibSignup from '../Lib-Signup/LibSignup';
 import LibSignin from '../Lib-Signin/LibSignin';
 import AccessForbidden from '../AccessForbidden/AccessForbidden';
 import ExpenseHome from '../ExpenseHome/ExpenseHome';
-import ExpenseGraph from '../ExpenseGraph/ExpenseGraph';
+import GraphView from '../GraphView/GraphView';
 import DetailView from '../DetailView';
+import { createStructuredSelector } from 'reselect';
+import {connect} from 'react-redux';
+import { makeExpensesSelector } from '../ExpenseHome/selectors';
 
 const loginUrl =
   process.env.NODE_ENV === PRODUCTION
@@ -40,7 +43,7 @@ const loginUrl =
 
 const Protected = userIsAuthenticated(HomePage);
 
-export const App = () => (
+export const App = ({expenses}) => (
   <>
     <ConnectedRouter history={history}>
       <Switch>
@@ -51,7 +54,7 @@ export const App = () => (
         />
         <RenderRoute exact path="/libSignup" component={LibSignup} />
         <RenderRoute exact path="/libSignin" component={LibSignin} />
-
+        <RenderRoute exact path="/GraphView" component={GraphView} expenses={expenses}  />
         {/* <RenderRoute exact path={loginUrl} component={Login} /> */}
         <RenderRoute exact path="/" component={HomePage} key={publicPath} />
         <RenderRoute exact path="/home" component={ExpenseHome} key={publicPath} />
@@ -76,12 +79,14 @@ export const App = () => (
         />
         <RenderRoute exact path="/ExpenseHome" component={ExpenseHome} />
         <RenderRoute exact path="/DetailView" component={DetailView} />
-        <RenderRoute exact path="/ExpenseGraph" component={ExpenseGraph} />
         <RenderRoute component={NotFoundPage} />
       </Switch>
     </ConnectedRouter>
     <GlobalStyle />
   </>
 );
+const mapStateToProps = createStructuredSelector({
+  expenses : makeExpensesSelector(),
+});
 
-export default App;
+export default connect(mapStateToProps)(App);

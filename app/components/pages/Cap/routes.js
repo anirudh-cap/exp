@@ -36,9 +36,9 @@ const routes = [
   },
   {
     exact: true,
-    path: `${publicPath}/ExpenseGraph`,
-    type: 'expenseGraph',
-    component: lazy(() => import('../ExpenseGraph')),
+    path: `${publicPath}/GraphView`,
+    type: 'graphView',
+    component: lazy(() => import('../GraphView')),
   },
   {
     exact: true,

@@ -23,8 +23,8 @@ const NavBar = ({ className }) => {
       },
       {
         label: 'GraphView',
-        link: '/ExpenseGraph',
-        key: 'expensegraph',
+        link: '/GraphView',
+        key: 'graphView',
       },
       {
         label: 'DetailView',
