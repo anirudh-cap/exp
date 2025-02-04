@@ -56,6 +56,18 @@ export const expenseReducer = (state = initialState, action) => {
     case types.DELETE_EXPENSE_FAILURE:
       return state.set('loading', false).set('error', action.payload);
 
+      case types.SORT_EXPENSES:
+        return state.update("expenses", (expenses) =>
+          expenses.sort((a, b) => {
+             if (action.payload === "amountAsc") {
+              return a.get("amount") - b.get("amount");
+            } else if (action.payload === "categoryAsc") {
+              return a.get("category").localeCompare(b.get("category"));
+            }
+            return 0;
+          })
+        );
+
     default:
       return state;
   }

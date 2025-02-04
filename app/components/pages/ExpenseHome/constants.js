@@ -20,5 +20,7 @@ export const FILTERED_BY_MONTH = "FILTERED_BY_MONTH";
 export const SET_LOADING = "SET_LOADING";
 
 export const SEARCH_TERM = "SEARCH_TERM";
+export const SORT_EXPENSES = "SORT_EXPENSES";
+
 
 

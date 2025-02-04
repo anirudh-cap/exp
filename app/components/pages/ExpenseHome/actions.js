@@ -15,6 +15,7 @@ import {
     SET_LOADING,
     FILTERED_BY_MONTH,
     SEARCH_TERM,
+    SORT_EXPENSES,
 } from "./constants";
 
 export const addExpenseRequest = (expense) => ({
@@ -90,3 +91,8 @@ export const searchTerm = (query) =>({
     type: SEARCH_TERM,
     payload: query,
 })
+
+export const sortExpenses = (sortType) => ({
+    type: SORT_EXPENSES,
+    payload: sortType,
+});

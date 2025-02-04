@@ -17,6 +17,7 @@ import reducer from './reducer';
 import NavBar from '../../organisms/NavBar/NavBar';
 import { createStructuredSelector } from 'reselect';
 import * as actions from './actions';
+import { sortExpenses } from './actions';
 import { expenseReducer } from './reducer';
 import {
   makeExpensesSelector,
@@ -51,6 +52,10 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
     return name.toLowerCase().includes(enteredFilterValue.toLowerCase());
   });
 
+  const handleSortChange = selectedOption => {
+    actions.sortExpenses(selectedOption);
+  };
+
   return (
     <>
       <NavBar />
@@ -70,20 +75,20 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
             onChange={handleSearch}
             value={enteredFilterValue}
             style={{ width: '90%' }}
-            
           />
         </CapRow>
 
         {/* Filter Section */}
         <CapRow style={{ width: '100%', marginBottom: 16 }}>
-          <CapSelect 
-          options={[{ label: 'By expense asc', value: 'expenseAsc' },
-            { label: 'By amount asc', value: 'amountAsc' },
-            { label: 'By category asc', value: 'categoryAsc' },
-            ]} 
-          width="100px"
-          defaultValue="By expense asc"
-          /> 
+          <CapSelect
+            options={[
+              { label: 'By Amount Asc', value: 'amountAsc' },
+              { label: 'By Category Asc', value: 'categoryAsc' },
+            ]}
+            width="100px"
+            defaultValue="Sort By"
+            onChange={selected => handleSortChange(selected)}
+          />
         </CapRow>
 
         {/* Centered Balance and Expenses Section */}
@@ -118,6 +123,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(actions, dispatch),
+  actions: bindActionCreators({ ...actions, sortExpenses }, dispatch),
 });
 
 const withConnect = connect(
