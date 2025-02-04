@@ -8,7 +8,7 @@ import ProfilePageBorrowTable from '../../organisms/ProfilePageBorrowTable/Profi
 import ProfilePageNewRequestTable from '../../organisms/AdminPageNewRequestTable/AdminPageNewRequestTable';
 import ProfilePageHeader from '../../organisms/ProfilePageHeader/ProfilePageHeader';
 import styles from './styles';
-import Navbar from '../../organisms/Navbar/Navbar';
+import NavBar from '../../organisms/NavBar/NavBar';
 
 const ProfilePage = ({ className, intl: { formatMessage } }) => {
   const panes = [
@@ -26,7 +26,7 @@ const ProfilePage = ({ className, intl: { formatMessage } }) => {
 
   return (
     <>
-      <Navbar />
+      <NavBar />
       <CapRow className={className}>
         <ProfilePageHeader />
         <CapRow className="p-20">

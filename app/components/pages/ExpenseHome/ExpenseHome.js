@@ -27,7 +27,7 @@ import {
 const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
   const [enteredFilterValue, setEnteredFilterValue] = useState('');
   const [balance, setBalance] = useState(0); // Actual balance
-  const [tempBalance, setTempBalance] = useState(0); // Temporary balance for input field
+  const [tempBalance, setTempBalance] = useState(); // Temporary balance for input field
 
   useEffect(() => {
     actions.fetchExpenseRequest();
@@ -50,7 +50,7 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
 
   const handleBalanceReset = () => {
     setBalance(0); // Reset actual balance
-    setTempBalance(0); // Reset temporary balance
+    setTempBalance(); // Reset temporary balance
   };
 
   const remainingBalance = balance - totalExpenses;
@@ -74,7 +74,6 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
   return (
     <>
       <NavBar />
-      {/* Main container now arranges its children in a column and centers them */}
       <CapRow
         style={{
           padding: '0 24px',
@@ -84,17 +83,13 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
         }}
       >
         {/* Search Section */}
-        <CapRow style={{ width: '100%', marginBottom: 16 }}>
+        <CapRow style={{ width: '100%', marginBottom: 16 }} type='flex'>
           <CapInput
             placeholder="Search any term"
             onChange={handleSearch}
             value={enteredFilterValue}
-            style={{ width: '90%' }}
+            style={{ width: '95%' }}
           />
-        </CapRow>
-
-        {/* Filter Section */}
-        <CapRow style={{ width: '100%', marginBottom: 16 }}>
           <CapSelect
             options={[
               { label: 'By Amount Asc', value: 'amountAsc' },
@@ -106,22 +101,25 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
           />
         </CapRow>
 
+        
+
         <CapRow
           style={{
             width: '100%',
             marginBottom: 16,
             alignItems: 'center',
             justifyContent: 'flex-start',
+            display: 'flex',
           }}
         >
           <CapInput
             placeholder="Enter your Balance"
             onChange={handleBalanceChange}
             value={tempBalance} // Bind to tempBalance
-            style={{ width: '20%', marginRight: '10px' }} // Adds spacing
+            style={{ width: '95%', marginRight: '10px' }} // Adds spacing
           />
           <CapButton onClick={handleBalanceUpdate}>Update</CapButton>
-          <CapButton value="Reset" onClick={handleBalanceReset}>
+          <CapButton style={{margin:'10px'}}value="Reset" onClick={handleBalanceReset}>
             Reset
           </CapButton>
         </CapRow>
@@ -134,12 +132,13 @@ const ExpenseHome = ({ className, expenses, loading, error, actions }) => {
             alignItems: 'center',
             marginBottom: 16,
           }}
+          type='flex'
         >
-          <CapHeading type="h4" style={{ color: '#52c41a', fontSize: '20px' }}>
-            Balance: ₹{remainingBalance}
+          <CapHeading type="h4" style={{ color: '#52c41a', fontSize: '25px' }}>
+            BALANCE: ₹{remainingBalance}
           </CapHeading>
-          <CapHeading type="h4" style={{ color: '#f5222d', fontSize: '20px' }}>
-            Expenditure: ₹{totalExpenses}
+          <CapHeading type="h4" style={{ marginLeft:'10px', color: '#f5222d', fontSize: '25px' }}>
+            EXPENDITURE: ₹{totalExpenses}
           </CapHeading>
         </CapRow>
 

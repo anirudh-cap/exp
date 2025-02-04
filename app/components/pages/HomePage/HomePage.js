@@ -14,7 +14,7 @@ import {
 } from './selector';
 import withStyles from '../../../utils/withStyles';
 import styles from './styles';
-import Navbar from '../../organisms/Navbar/Navbar';
+import NavBar from '../../organisms/NavBar/NavBar';
 import { publicPath } from '../../../config/path';
 
 const RECORDS_PER_PAGE = 10;
@@ -88,7 +88,7 @@ const HomePage = ({
 
   return (
     <>
-      <Navbar />
+      <NavBar />
       <CapRow className={className}>
         <CapRow className="requests-container">
           <Filter

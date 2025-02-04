@@ -131,7 +131,7 @@ describe('NewBookRequest component', () => {
     fireEvent.click(cancelButton);
   });
 
-  test('renders Navbar component', () => {
+  test('renders NavBar component', () => {
     render(setup());
     const menu = screen.getByRole('menu');
     const menuItems = within(menu).getAllByRole('menuitem');

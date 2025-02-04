@@ -30,7 +30,7 @@ import messages from './messages';
 import * as actions from './actions';
 import newBookRequestsReducer from './reducer';
 import { makeSelectNewBookRequestsData } from './selectors';
-import Navbar from '../../organisms/Navbar/Navbar';
+import NavBar from '../../organisms/NavBar/NavBar';
 
 export const NewBookRequest = ({ className, bookRequestsData, actions }) => {
   const optionsForSearchFilter = [
@@ -212,7 +212,7 @@ export const NewBookRequest = ({ className, bookRequestsData, actions }) => {
   return (
     <>
       <CapRow className={className}>
-        <Navbar />
+        <NavBar />
         <CapRow className="requests-container">
           <CapRow className="top-section" type="flex">
             <CapHeading type="h1" className="heading-text">

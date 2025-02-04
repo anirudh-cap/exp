@@ -9,7 +9,7 @@ import { useHistory } from 'react-router';
 import styles from './styles';
 import withStyles from '../../../utils/withStyles';
 import { publicPath } from '../../../config/path';
-const Navbar = ({ className }) => {
+const NavBar = ({ className }) => {
   const history = useHistory();
 
 
@@ -47,4 +47,4 @@ const Navbar = ({ className }) => {
   );
 };
 
-export default withStyles(Navbar, styles);
+export default withStyles(NavBar, styles);

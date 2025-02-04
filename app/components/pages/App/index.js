@@ -30,7 +30,8 @@ import LibSignup from '../Lib-Signup/LibSignup';
 import LibSignin from '../Lib-Signin/LibSignin';
 import AccessForbidden from '../AccessForbidden/AccessForbidden';
 import ExpenseHome from '../ExpenseHome/ExpenseHome';
-import ExpenseGraph from '../../organisms/ShowExpenseGraph/ExpenseGraph';
+import ExpenseGraph from '../ExpenseGraph/ExpenseGraph';
+import DetailView from '../DetailView';
 
 const loginUrl =
   process.env.NODE_ENV === PRODUCTION
@@ -74,7 +75,8 @@ export const App = () => (
           component={AccessForbidden}
         />
         <RenderRoute exact path="/ExpenseHome" component={ExpenseHome} />
-        <RenderRoute exact path="/show-graph" component={ExpenseGraph} />
+        <RenderRoute exact path="/DetailView" component={DetailView} />
+        <RenderRoute exact path="/ExpenseGraph" component={ExpenseGraph} />
         <RenderRoute component={NotFoundPage} />
       </Switch>
     </ConnectedRouter>
