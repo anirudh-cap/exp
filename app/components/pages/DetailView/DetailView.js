@@ -1,14 +1,13 @@
-import React from 'react';
-import { CapRow } from '@capillarytech/cap-ui-library';
-import NavBar from '../../organisms/NavBar/NavBar';
+import React from 'react'
+
+
 
 const DetailView = () => {
   return (
-    <>
-      <NavBar />
-      <h1>hi</h1>
-    </>
-  );
-};
+    <div>
+      
+    </div>
+  )
+}
 
-export default DetailView;
+export default DetailView
